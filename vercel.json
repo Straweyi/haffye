@@ -1,0 +1,12 @@
+{
+  "crons": [
+    {
+      "path": "/api/cron/cleanup-locations",
+      "schedule": "*/10 * * * *"
+    },
+    {
+      "path": "/api/cron/expire-payments",
+      "schedule": "*/10 * * * *"
+    }
+  ]
+}
