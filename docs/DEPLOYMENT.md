@@ -44,7 +44,7 @@ Add the following variables in **Vercel Project → Settings → Environment Var
 - `/api/cron/cleanup-locations` — removes stale `vendor_locations` rows older than 15 minutes.
 - `/api/cron/expire-payments` — checks overdue pending payments against Midtrans and releases unused vouchers.
 
-> **Vercel Hobby vs Pro Note**: `vercel.json` currently uses `*/10 * * * *` (every 10 minutes), which requires Vercel Pro. If deploying on the **Vercel Hobby** plan, update both schedules in `vercel.json` to a daily cron such as `0 0 * * *` (overdue payments are also checked live when customers view `/customer/orders/[id]`).
+> **Vercel Hobby vs Pro Note**: `vercel.json` is configured with daily schedules (`0 0 * * *` and `5 0 * * *`) so it deploys cleanly on the **Vercel Hobby** plan. On Vercel Pro, you may optionally tighten the schedule (e.g. `*/10 * * * *`). Note that stale vendor GPS locations are also flagged live in the UI after `NEXT_PUBLIC_LOCATION_STALE_SECONDS`, and overdue payments are checked live when customers open `/customer/orders/[id]`.
 
 ## 5. Production Validation Checklist
 1. `npm run typecheck` — 0 TypeScript errors.
